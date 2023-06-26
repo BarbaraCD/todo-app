@@ -3,11 +3,8 @@ export default {
   content: ['./src/**/*.tsx'],
   theme: {
     colors: {
-      gray: '#e0e0e0',
-      white: '#FFF',
-      black: '#000',
+      white: '#000'
       aqua: {
-        100: '#F0FFF4',
         500: '#059669B3',
         700: '#059669',
       },

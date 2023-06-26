@@ -7,7 +7,7 @@ export default {
       white: '#FFF',
       black: '#000',
       aqua: {
-        100: '#F0FFF4',
+        100: '#31bf8680',
         500: '#059669B3',
         700: '#059669',
       },
