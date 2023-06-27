@@ -16,11 +16,13 @@ export function Tasks({ title, handleDelete }: TasksProps) {
       onMouseLeave={() => setIsHovered(false)}
     >
       <div className="ml-6 rounded text-lg"> {title} </div>
-      {isHovered && (
-        <button onClick={handleDelete} className="mr-2 text-gray">
-          <FiTrash2 className="h-5 w-5 hover:text-black" />
+      <div className={`mr-2 ${isHovered ? 'text-gray' : 'text-transparent'}`}>
+        <button onClick={handleDelete}>
+          <FiTrash2
+            className={`h-5 w-5 ${isHovered ? 'hover:text-black' : ''}`}
+          />
         </button>
-      )}
+      </div>
     </div>
   )
 }

@@ -8,12 +8,11 @@ export type TasksProps = {
 }
 
 export function Tasks({ title, handleDelete }: TasksProps) {
-  const [isHovered, setIsHovered] = useState(false)
   return (
     <div
       className="ml-6 mr-6 mt-0 flex place-items-center justify-between rounded p-3 outline-none hover:bg-aqua-100"
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
     >
       <div className="ml-6 rounded text-lg"> {title} </div>
       {isHovered && (
