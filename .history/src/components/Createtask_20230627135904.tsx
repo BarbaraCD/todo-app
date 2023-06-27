@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Tasks, TasksProps } from './Tasks'
-import { createTask, deleteTask, getTasks } from '../services/task.service'
+import { createTask, getTasks } from '../services/task.service'
 
 export function Createtask() {
   const [tasks, setTasks] = useState<TasksProps[]>([])
@@ -14,13 +14,6 @@ export function Createtask() {
 
   async function createNewTask() {
     await createTask(newTask)
-    getTasks().then((response: any) => {
-      setTasks(response.data)
-    })
-  }
-
-  const removeTasks = async (id: number) => {
-    await deleteTask(id)
     getTasks().then((response: any) => {
       setTasks(response.data)
     })
@@ -49,9 +42,7 @@ export function Createtask() {
             <Tasks
               key={key}
               title={task.title}
-              handleDelete={() => {
-                removeTasks(Number(task.id))
-              }}
+              handleDelete={() => console.log(task.title)}
             />
           )
         })}

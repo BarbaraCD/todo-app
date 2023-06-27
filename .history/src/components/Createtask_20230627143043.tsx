@@ -21,9 +21,6 @@ export function Createtask() {
 
   const removeTasks = async (id: number) => {
     await deleteTask(id)
-    getTasks().then((response: any) => {
-      setTasks(response.data)
-    })
   }
 
   return (

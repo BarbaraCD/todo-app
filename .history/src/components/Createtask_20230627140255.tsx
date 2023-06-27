@@ -19,11 +19,8 @@ export function Createtask() {
     })
   }
 
-  const removeTasks = async (id: number) => {
-    await deleteTask(id)
-    getTasks().then((response: any) => {
-      setTasks(response.data)
-    })
+  const removeTasks = async () => {
+    await deleteTask()
   }
 
   return (
@@ -46,13 +43,7 @@ export function Createtask() {
       {tasks.length > 0 &&
         tasks.map((task, key) => {
           return (
-            <Tasks
-              key={key}
-              title={task.title}
-              handleDelete={() => {
-                removeTasks(Number(task.id))
-              }}
-            />
+            <Tasks key={key} title={task.title} handleDelete={removeTasks} />
           )
         })}
     </div>

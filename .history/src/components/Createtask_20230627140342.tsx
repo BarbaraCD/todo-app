@@ -19,11 +19,8 @@ export function Createtask() {
     })
   }
 
-  const removeTasks = async (id: number) => {
-    await deleteTask(id)
-    getTasks().then((response: any) => {
-      setTasks(response.data)
-    })
+  const removeTasks = async (id: number | undefined) => {
+    await deleteTask()
   }
 
   return (
@@ -49,9 +46,7 @@ export function Createtask() {
             <Tasks
               key={key}
               title={task.title}
-              handleDelete={() => {
-                removeTasks(Number(task.id))
-              }}
+              handleDelete={removeTasks(tasks.id)}
             />
           )
         })}

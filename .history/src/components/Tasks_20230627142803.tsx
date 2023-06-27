@@ -3,7 +3,7 @@ import { FiTrash2 } from 'react-icons/fi'
 export type TasksProps = {
   id?: number
   title: string
-  handleDelete?: () => void
+  handleDelete?: () => void | Promise<void>
 }
 
 export function Tasks({ title, handleDelete }: TasksProps) {

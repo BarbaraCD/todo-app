@@ -1,30 +1,16 @@
 import { useEffect, useState } from 'react'
 import { Tasks, TasksProps } from './Tasks'
-import { createTask, deleteTask, getTasks } from '../services/task.service'
+import { createTask, getTasks } from '../services/task.service'
 
 export function Createtask() {
   const [tasks, setTasks] = useState<TasksProps[]>([])
   const [newTask, setNewTask] = useState<string>('')
 
   useEffect(() => {
-    getTasks().then((response: any) => {
-      setTasks(response.data)
+    getTasks().then((resposta) => {
+      setTasks(resposta.data)
     })
   }, [])
-
-  async function createNewTask() {
-    await createTask(newTask)
-    getTasks().then((response: any) => {
-      setTasks(response.data)
-    })
-  }
-
-  const removeTasks = async (id: number) => {
-    await deleteTask(id)
-    getTasks().then((response: any) => {
-      setTasks(response.data)
-    })
-  }
 
   return (
     <div>
@@ -36,7 +22,7 @@ export function Createtask() {
           onChange={(event) => setNewTask(event.target.value)}
         />
         <button
-          onClick={createNewTask}
+          onClick={() => createTask(newTask)}
           className="mb-5 mr-5 mt-5 rounded bg-aqua-500 px-5 text-lg text-white"
         >
           Create Task
@@ -45,15 +31,7 @@ export function Createtask() {
 
       {tasks.length > 0 &&
         tasks.map((task, key) => {
-          return (
-            <Tasks
-              key={key}
-              title={task.title}
-              handleDelete={() => {
-                removeTasks(Number(task.id))
-              }}
-            />
-          )
+          return <Tasks key={key} title={task.title} />
         })}
     </div>
   )
