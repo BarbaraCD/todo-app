@@ -21,7 +21,7 @@ export function Tasks({ id, title, handleDelete }: TasksProps) {
           {id}
           {')'}
         </span>
-        <span className="m-1 whitespace-normal break-all">{title}</span>
+        <span className="m-1 break-words">{title}</span>
       </div>
       {isHovered && (
         <button onClick={handleDelete} className="mr-2 text-gray-500">

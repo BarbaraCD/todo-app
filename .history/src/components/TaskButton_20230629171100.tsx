@@ -6,7 +6,8 @@ export function TaskButton({ onClick }: TaskButtonProps) {
   return (
     <button
       onClick={onClick}
-      className="mb-0 mr-5 mt-5 items-center justify-center overflow-hidden rounded bg-aqua-500 px-5 text-lg text-white md:flex"
+      className="mb-0 mr-5 mt-5 md:flex-1 rounded bg-aqua-500 px-5 text-lg text-white"
+      >
     >
       Create Task
     </button>
