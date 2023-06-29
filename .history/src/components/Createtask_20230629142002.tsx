@@ -62,7 +62,7 @@ export function Createtask() {
             />
           ))
       ) : (
-        <p className="m-2 flex items-center justify-center p-2 text-xl text-gray-100">
+        <p className="m-2 flex items-center justify-center text-xl text-gray-100">
           No tasks available, Create a new task.
         </p>
       )}

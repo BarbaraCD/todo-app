@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Tasks, TasksProps } from './Tasks'
 import { createTask, deleteTask, getTasks } from '../services/task.service'
-import { TaskInput } from './TaskInput'
-import { TaskButton } from './TaskButton'
 
 export function Createtask() {
   const [tasks, setTasks] = useState<TasksProps[]>([])
@@ -40,13 +38,21 @@ export function Createtask() {
   return (
     <div>
       <div className="flex">
-        <TaskInput
+        <input
+          type="text"
+          className="mb-0 ml-5 mr-5 mt-5 flex-1 rounded border border-gray-100 px-3 py-4 text-lg outline-none ring-aqua-700 placeholder:text-sm focus-within:ring-2"
+          placeholder="Enter a task"
           value={newTask}
-          onChange={setNewTask}
+          onChange={(event) => setNewTask(event.target.value)}
           onKeyPress={handleKeyPress}
         />
 
-        <TaskButton onClick={createNewTask} />
+        <button
+          onClick={createNewTask}
+          className="mb-0 mr-5 mt-5 rounded bg-aqua-500 px-5 text-lg text-white"
+        >
+          Create Task
+        </button>
       </div>
 
       {tasks.length > 0 ? (
@@ -62,7 +68,7 @@ export function Createtask() {
             />
           ))
       ) : (
-        <p className="m-2 flex items-center justify-center p-2 text-xl text-gray-100">
+        <p className="justify-items-center text-xl text-gray-100">
           No tasks available, Create a new task.
         </p>
       )}
