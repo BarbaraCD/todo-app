@@ -17,11 +17,17 @@ export function Tasks({ id, title, handleDelete }: TasksProps) {
       onMouseLeave={() => setIsHovered(false)}
     >
       <div className="ml-4 flex-1 rounded text-lg">
-        <span className="whitespace-normal break-all">
-          {id}
-          {')'}
-        </span>
-        <span className="m-1 whitespace-normal break-all">{title}</span>
+        <div
+          className={`flex ${
+            title.length > 20 ? 'flex-col' : 'flex-row'
+          } break-all`}
+        >
+          <span className={`${title.length > 20 ? 'items-center' : ''}`}>
+            {id}
+            {')'}
+          </span>
+          <span className="m-1">{title}</span>
+        </div>
       </div>
       {isHovered && (
         <button onClick={handleDelete} className="mr-2 text-gray-500">
