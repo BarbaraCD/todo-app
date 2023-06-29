@@ -11,9 +11,13 @@ export function Createtask() {
   }, [])
 
   async function fetchTasks() {
-    const response: any = await getTasks()
-    const fetchedTasks = response.data
-    setTasks(fetchedTasks)
+    try {
+      const response = await getTasks()
+      const fetchedTasks = response.data
+      setTasks(fetchedTasks)
+    } catch (error) {
+      console.log('Ocorreu um erro ao buscar as tarefas:', error)
+    }
   }
 
   async function createNewTask() {

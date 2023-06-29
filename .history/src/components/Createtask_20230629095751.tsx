@@ -7,14 +7,10 @@ export function Createtask() {
   const [newTask, setNewTask] = useState<string>('')
 
   useEffect(() => {
-    fetchTasks()
+    getTasks().then((response) => {
+      setTasks(response.data))
+    }
   }, [])
-
-  async function fetchTasks() {
-    const response: any = await getTasks()
-    const fetchedTasks = response.data
-    setTasks(fetchedTasks)
-  }
 
   async function createNewTask() {
     await createTask(newTask)

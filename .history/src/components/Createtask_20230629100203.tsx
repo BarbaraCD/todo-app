@@ -5,21 +5,24 @@ import { createTask, deleteTask, getTasks } from '../services/task.service'
 export function Createtask() {
   const [tasks, setTasks] = useState<TasksProps[]>([])
   const [newTask, setNewTask] = useState<string>('')
+  const [setModal] = useState(false)
 
   useEffect(() => {
-    fetchTasks()
+    getTasks().then((response) => {
+      setTasks(response.data)
+    })
   }, [])
 
-  async function fetchTasks() {
-    const response: any = await getTasks()
-    const fetchedTasks = response.data
-    setTasks(fetchedTasks)
+  async function getAllTasks() {
+    getTasks().then((response) => {
+      setTasks(response.data)
+    })
   }
 
   async function createNewTask() {
     await createTask(newTask)
-    fetchTasks()
     setNewTask('')
+    await getAllTasks()
   }
 
   const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
@@ -29,8 +32,9 @@ export function Createtask() {
   }
 
   const removeTask = async (id: number) => {
+    setModal(false)
     await deleteTask(id)
-    fetchTasks()
+    await getAllTasks()
   }
 
   return (

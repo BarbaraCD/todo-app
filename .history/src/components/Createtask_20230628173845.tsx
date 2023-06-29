@@ -11,8 +11,11 @@ export function Createtask() {
   }, [])
 
   async function fetchTasks() {
-    const response: any = await getTasks()
-    const fetchedTasks = response.data
+    const response = await getTasks()
+    const fetchedTasks = response.map((task, index) => ({
+      ...task,
+      id: tasks.length - index,
+    }))
     setTasks(fetchedTasks)
   }
 

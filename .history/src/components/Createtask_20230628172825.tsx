@@ -2,8 +2,12 @@ import React, { useEffect, useState } from 'react'
 import { Tasks, TasksProps } from './Tasks'
 import { createTask, deleteTask, getTasks } from '../services/task.service'
 
+type TasksState = {
+  data: TasksProps[] | null
+}
+
 export function Createtask() {
-  const [tasks, setTasks] = useState<TasksProps[]>([])
+  const [tasks, setTasks] = useState<TasksState>({ data: null })
   const [newTask, setNewTask] = useState<string>('')
 
   useEffect(() => {
@@ -11,9 +15,9 @@ export function Createtask() {
   }, [])
 
   async function fetchTasks() {
-    const response: any = await getTasks()
+    const response = await getTasks()
     const fetchedTasks = response.data
-    setTasks(fetchedTasks)
+    setTasks({ data: fetchedTasks })
   }
 
   async function createNewTask() {
@@ -53,18 +57,17 @@ export function Createtask() {
         </button>
       </div>
 
-      {tasks.length > 0 &&
-        tasks
-          .slice()
-          .reverse()
-          .map((task, index) => (
-            <Tasks
-              key={task.id}
-              id={index + 1}
-              title={task.title}
-              handleDelete={() => removeTask(task.id)}
-            />
-          ))}
+      {tasks.data &&
+        tasks.data.map((task, index) => (
+          <Tasks
+            key={task.id}
+            id={index + 1}
+            title={task.title}
+            handleDelete={() => {
+              removeTask(task.id)
+            }}
+          />
+        ))}
     </div>
   )
 }

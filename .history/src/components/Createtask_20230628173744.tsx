@@ -10,11 +10,8 @@ export function Createtask() {
     fetchTasks()
   }, [])
 
-  async function fetchTasks() {
-    const response: any = await getTasks()
-    const fetchedTasks = response.data
-    setTasks(fetchedTasks)
-  }
+  Property 'data' does not exist on type 'TasksProps[]'.ts(2339)
+any
 
   async function createNewTask() {
     await createTask(newTask)

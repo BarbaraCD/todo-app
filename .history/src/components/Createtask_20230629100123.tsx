@@ -7,19 +7,21 @@ export function Createtask() {
   const [newTask, setNewTask] = useState<string>('')
 
   useEffect(() => {
-    fetchTasks()
+    getTasks().then((response) => {
+      setTasks(response.data)
+    })
   }, [])
 
-  async function fetchTasks() {
-    const response: any = await getTasks()
-    const fetchedTasks = response.data
-    setTasks(fetchedTasks)
+  async function getAllTasks() {
+    getTasks().then((response) => {
+      setTasks(response.data)
+    })
   }
 
   async function createNewTask() {
     await createTask(newTask)
-    fetchTasks()
     setNewTask('')
+    await getAllTasks()
   }
 
   const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
@@ -29,8 +31,9 @@ export function Createtask() {
   }
 
   const removeTask = async (id: number) => {
+    setModal(false)
     await deleteTask(id)
-    fetchTasks()
+    await getAllTasks()
   }
 
   return (

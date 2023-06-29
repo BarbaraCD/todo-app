@@ -11,9 +11,17 @@ export function Createtask() {
   }, [])
 
   async function fetchTasks() {
-    const response: any = await getTasks()
-    const fetchedTasks = response.data
-    setTasks(fetchedTasks)
+    try {
+      const response = await getTasks()
+      if (response.data) {
+        const fetchedTasks = response.data
+        setTasks(fetchedTasks)
+      } else {
+        // Trate o caso em que a resposta não possui a propriedade data
+      }
+    } catch (error) {
+      // Trate o erro de requisição
+    }
   }
 
   async function createNewTask() {

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Tasks, TasksProps } from './Tasks'
 import { createTask, deleteTask, getTasks } from '../services/task.service'
+import { api } from '../services/ApiConfig'
 
 export function Createtask() {
   const [tasks, setTasks] = useState<TasksProps[]>([])
@@ -10,10 +11,9 @@ export function Createtask() {
     fetchTasks()
   }, [])
 
-  async function fetchTasks() {
-    const response: any = await getTasks()
-    const fetchedTasks = response.data
-    setTasks(fetchedTasks)
+  export async function getTasks(): Promise<TasksProps[]> {
+    const response = await api.get('/tasks')
+    return response.data
   }
 
   async function createNewTask() {
