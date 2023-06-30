@@ -17,7 +17,7 @@ export function Tasks({ id, title, handleDelete }: TasksProps) {
       onMouseLeave={() => setIsHovered(false)}
     >
       <div className="ml-4 flex items-center rounded text-lg">
-        <span>
+        <span className="whitespace-normal break-all">
           {id}
           {')'}
         </span>

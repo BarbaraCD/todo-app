@@ -16,8 +16,8 @@ export function Tasks({ id, title, handleDelete }: TasksProps) {
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      <div className="ml-4 flex items-center rounded text-lg">
-        <span>
+      <div className="ml-4 flex-1 rounded text-lg">
+        <span className="whitespace-normal break-all">
           {id}
           {')'}
         </span>
